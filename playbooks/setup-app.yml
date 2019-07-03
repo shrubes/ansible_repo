@@ -15,12 +15,16 @@
 # This searches the /etc/php.ini file
 # finds the line that says short_open_tag
 # and changes it to short_open_tag=On
+# notify parameter notifies restart apache there is a change
+# to the php.ini file
       - name: configure php.ini file
         lineinfile:
           path: /etc/php.ini
           regexp: ^short_open_tag
-          line: 'short_open_tag=On'
+          line: 'short_open_tag=On'  
+        notify: restart apache
 
 # restarts the httpd service
-      - name: 
+    handlers:
+      - name: restart apache
         service: name=httpd state=restarted
