@@ -1,0 +1,6 @@
+# ping.yml
+--- # three lines indicate a playbook
+  - hosts: all # we run it against all of our inventory
+    tasks: #these are the tasks we want to run
+      - name: Ping all servers # name of what we are doing
+        action: ping #actual task that runs
