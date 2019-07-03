@@ -1,0 +1,14 @@
+# all-playbooks.yml
+# Updates all packages on our system
+# Installs all apache and php dependencies on app and load balancers
+# Setup our webserver application file and configure it
+# Setup our loadbalancer and configure it properly
+# checks to make sure apache is running on every server
+# Each playbook runs sequentually
+
+---
+  - import_playbook: yum-update.yml
+  - import_playbook: install-services.yml
+  - import_playbook: setup-app.yml
+  - import_playbook: setup-lb.yml
+  - import_playbook: check-status.yml
