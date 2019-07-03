@@ -1,2 +1,2 @@
 # ansible_repo
-ansible repo for my class
+ansible repo for learning ansible
