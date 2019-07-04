@@ -1,18 +1,10 @@
-# setup-app.yml
-# copies index.php to /var/www/html on the webservers hosts
-# gives 0755 permissions
-
 ---
-  - hosts: webservers
-    become: true
-    #creates a variable to the apache home that we can use
-    vars:
-      path_to_app: "/var/www/html"
+# tasks file for roles/webservers
 
     tasks:
       - name: Upload application file
         copy:
-          src: ../index.php
+          src: ../files/index.php
           dest: "{{ path_to_app}}"
           mode: 0755
       
@@ -44,8 +36,3 @@
           regexp: ^short_open_tag
           line: 'short_open_tag=On'  
         notify: restart apache
-
-# restarts the httpd service
-    handlers:
-      - name: restart apache
-        service: name=httpd state=restarted
